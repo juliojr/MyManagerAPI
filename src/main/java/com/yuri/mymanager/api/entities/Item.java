@@ -5,13 +5,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
+import com.yuri.mymanager.api.enums.SituacaoEnum;
 
 @Entity
 @Table(name = "item")
@@ -24,7 +29,7 @@ public class Item implements Serializable {
 	private Double quantidade;
 	private Double unitario;
 	private Date dataPagamento;
-	private Boolean pago;
+	private SituacaoEnum situacao;
 	private Usuario usuario;
 	private Date dataCriacao;
 
@@ -42,7 +47,7 @@ public class Item implements Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	public Cabecalho getCabecalho() {
 		return cabecalho;
 	}
@@ -51,7 +56,7 @@ public class Item implements Serializable {
 		this.cabecalho = cabecalho;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	public Produto getProduto() {
 		return produto;
 	}
@@ -87,13 +92,14 @@ public class Item implements Serializable {
 		this.dataPagamento = dataPagamento;
 	}
 
-	@Column(name = "pago", nullable = false)
-	public Boolean getPago() {
-		return pago;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "situacao", nullable = false)
+	public SituacaoEnum getSituacao() {
+		return situacao;
 	}
 
-	public void setPago(Boolean pago) {
-		this.pago = pago;
+	public void setSituacao(SituacaoEnum situacao) {
+		this.situacao = situacao;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -120,4 +126,12 @@ public class Item implements Serializable {
 		dataCriacao = atual;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", cabecalho=" + cabecalho + ", produto=" + produto + ", quantidade=" + quantidade
+				+ ", unitario=" + unitario + ", dataPagamento=" + dataPagamento + ", situacao=" + situacao
+				+ ", usuario=" + usuario + ", dataCriacao=" + dataCriacao + "]";
+	}
+
+	
 }

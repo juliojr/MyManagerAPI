@@ -108,4 +108,11 @@ public class Cabecalho implements Serializable {
 		dataCriacao = atual;
 	}
 
+	@Override
+	public String toString() {
+		return "Cabecalho [id=" + id + ", integrante=" + integrante + ", dataMovimento=" + dataMovimento + ", tipo="
+				+ tipo + ", usuario=" + usuario + ", dataCriacao=" + dataCriacao + "]";
+	}
+
+	
 }

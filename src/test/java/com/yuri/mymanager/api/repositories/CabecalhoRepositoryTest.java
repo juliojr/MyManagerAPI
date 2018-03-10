@@ -1,7 +1,5 @@
 package com.yuri.mymanager.api.repositories;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -16,26 +14,29 @@ import com.yuri.mymanager.api.entities.Usuario;
 @SpringBootTest
 @ActiveProfiles("test")
 @SuppressWarnings("static-access")
-public class UsuarioRepositoryTest {
+public class CabecalhoRepositoryTest {
+	@Autowired
+	private CabecalhoRepository cabecalhoRepository;
+	
+	@Autowired
+	private IntegranteRepository integranteRepository;
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-
-	GenericInfo info = new GenericInfo();
-
+	
+	private GenericInfo info = new GenericInfo();
+	private Usuario u;
+	
 	@Before
-	public void setUp() {
-		usuarioRepository.save(info.usuario);
+	public void SetUp() {
+		u = this.usuarioRepository.save(info.usuario);
+		info.integrante.setUsuario(u);
 	}
 	
 	@After
 	public void tearDown() {
-		usuarioRepository.deleteAll();
-	}
-	
-	//@Test
-	public void testFindByEmail() {
-		Usuario usuario = this.usuarioRepository.findByEmail(info.email);
-		assertEquals(usuario.getEmail(), info.email);		
-	}
-	
+		this.cabecalhoRepository.deleteAll();
+		this.integranteRepository.deleteAll();
+		this.usuarioRepository.deleteAll();
+	}	
 }

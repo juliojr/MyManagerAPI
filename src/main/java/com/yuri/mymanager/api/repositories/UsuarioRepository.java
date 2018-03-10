@@ -8,7 +8,8 @@ import com.yuri.mymanager.api.entities.Usuario;
 @Transactional(readOnly = true)
 public interface UsuarioRepository  extends JpaRepository<Usuario, Long> {
 	
-	Usuario findByEmail(String email);
+	Usuario findById(Long id);
 	
-	Usuario findByNome(String nome);
+	Usuario findByEmail(String email);
+
 }

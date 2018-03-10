@@ -93,4 +93,12 @@ public class Produto implements Serializable {
 		this.itens = itens;
 	}
 
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", descricao=" + descricao + ", caminhoFoto=" + caminhoFoto + ", usuario="
+				+ usuario + ", dataCriacao=" + dataCriacao + "]";
+	}
+	
+	
+
 }

@@ -57,37 +57,37 @@ create table cabecalho (
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     alter table cabecalho 
-        add constraint FKtlxjqpaae13aox6uxfyjggjey 
+        add constraint FKCabecalhoIntegrante 
         foreign key (integrante_id) 
         references integrante (id);
 
     alter table cabecalho 
-        add constraint FKadmuvd8oght7jvcqrfr9h7ukq 
+        add constraint KFCabecalhoUSuario 
         foreign key (usuario_id) 
         references usuario (id);
 
     alter table integrante 
-        add constraint FKit9brlnwpiy8oxy4x2nbd4ead 
+        add constraint FKIntegranteUsuario 
         foreign key (usuario_id) 
         references usuario (id);
 
     alter table item 
-        add constraint FK6baintp9oukq4wl3q1cdyy51h 
+        add constraint FKItemCabecalho 
         foreign key (cabecalho_id) 
         references cabecalho (id);
 
     alter table item 
-        add constraint FKoya2x5ip1q2t3s0936vgjiyx9 
+        add constraint FKItemProduto 
         foreign key (produto_id) 
         references produto (id);
 
     alter table item 
-        add constraint FKpmv00mpj3ufvwmkh24x4j6j65 
+        add constraint FKItemUsuario 
         foreign key (usuario_id) 
         references usuario (id);
 
     alter table produto 
-        add constraint FK4qqkq7cmomd87obw16prilngw 
+        add constraint FKProdutoUsuario 
         foreign key (usuario_id) 
         references usuario (id);
   

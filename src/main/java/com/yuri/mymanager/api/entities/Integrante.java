@@ -172,4 +172,15 @@ public class Integrante implements Serializable {
 		final Date atual = new Date();
 		dataCriacao = atual;
 	}
+
+	@Override
+	public String toString() {
+		return "Integrante [id=" + id + ", cpfCnpj=" + cpfCnpj + ", nome=" + nome + ", ddd=" + ddd + ", telefone="
+				+ telefone + ", uf=" + uf + ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + ", numero="
+				+ numero + ", Complemento=" + Complemento + ", usuario=" + usuario + ", dataCriacao=" + dataCriacao
+				+ "]";
+	}
+	
+	
+	
 }
