@@ -11,16 +11,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.yuri.mymanager.api.entities.BalancoMensal;
 import com.yuri.mymanager.api.entities.Cabecalho;
+import com.yuri.mymanager.api.entities.FechamentoDia;
 import com.yuri.mymanager.api.entities.Integrante;
 import com.yuri.mymanager.api.entities.Item;
+import com.yuri.mymanager.api.entities.ItensPendentes;
+import com.yuri.mymanager.api.entities.MaisIntegrantes;
+import com.yuri.mymanager.api.entities.MaisProdutos;
 import com.yuri.mymanager.api.entities.Produto;
 import com.yuri.mymanager.api.entities.Usuario;
 import com.yuri.mymanager.api.enums.SituacaoEnum;
 import com.yuri.mymanager.api.enums.TipoEnum;
+import com.yuri.mymanager.api.repositories.MaisProdutosRepository;
+import com.yuri.mymanager.api.services.impl.BalancoMensalServiceImpl;
 import com.yuri.mymanager.api.services.impl.CabecalhoServiceImpl;
+import com.yuri.mymanager.api.services.impl.FechamentoDiaServiceImpl;
 import com.yuri.mymanager.api.services.impl.IntegranteServiceImpl;
 import com.yuri.mymanager.api.services.impl.ItemServiceImpl;
+import com.yuri.mymanager.api.services.impl.ItensPendentesServiceImpl;
+import com.yuri.mymanager.api.services.impl.MaisIntegrantesServiceImpl;
+import com.yuri.mymanager.api.services.impl.MaisProdutosServiceImpl;
 import com.yuri.mymanager.api.services.impl.ProdutoServiceImpl;
 import com.yuri.mymanager.api.services.impl.UsuarioServiceImpl;
 
@@ -38,9 +49,43 @@ public class BancoTests {
 	private CabecalhoServiceImpl cabecalhoService;
 	@Autowired
 	private ItemServiceImpl itemService;
+	@Autowired
+	private ItensPendentesServiceImpl itensPendentesServiceImpl;
+	@Autowired
+	private BalancoMensalServiceImpl balancoMensalServiceImpl;
+	@Autowired
+	private MaisProdutosServiceImpl maisProdutosServiceImpl;
+	@Autowired
+	private MaisIntegrantesServiceImpl maisIntegrantesServiceImpl;
+	@Autowired
+	private FechamentoDiaServiceImpl fechamentoDiaServiceImpl;
+	
 
 	@Test
 	public void iniciar() {
+		
+		List<ItensPendentes> lista = itensPendentesServiceImpl.buscarPorusuarioID(2L);
+		
+		lista.forEach(l -> System.out.println(l.toString()));
+		
+		List<BalancoMensal> listaBalanco = balancoMensalServiceImpl.buscarPorUsuarioIDEMesEAno(2L,  3,  2018);
+		
+		listaBalanco.forEach(l -> System.out.println(l.toString()));
+		
+		List<MaisProdutos> listaProdutos = maisProdutosServiceImpl.buscarPorUsuarioIDEMesEAno(2L,  3,  2018);
+		
+		listaProdutos.forEach(l -> System.out.println(l.toString()));
+		
+		List<MaisIntegrantes> listaIntegrantes = maisIntegrantesServiceImpl.buscarPorUsuarioIDEMesEAno(2L,  3,  2018);
+		
+		listaIntegrantes.forEach(l -> System.out.println(l.toString()));
+		
+		List<FechamentoDia> listaFechamentosDia = fechamentoDiaServiceImpl.buscarPorUsuarioIDEMesEAno(2L,  3,  2018);
+		
+		listaFechamentosDia.forEach(l -> System.out.println(l.toString()));
+		
+		
+		/*
 		// Testes de inserção no banco - OK
 
 		// testa se o usuário já existe, se não existir cria um novo

@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.yuri.mymanager.api.enums.SituacaoEnum;
 
@@ -82,7 +84,8 @@ public class Item implements Serializable {
 	public void setUnitario(Double unitario) {
 		this.unitario = unitario;
 	}
-
+	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "data_pagamento", nullable = false)
 	public Date getDataPagamento() {
 		return dataPagamento;
