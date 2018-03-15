@@ -19,7 +19,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import com.yuri.mymanager.api.enums.TipoEnum;
-
+/**
+ * Representação do model da tabela no banco de dados.
+ * @author Yuri Oliveira
+ *
+ */
 @Entity
 @Table(name = "cabecalho")
 public class Cabecalho implements Serializable {

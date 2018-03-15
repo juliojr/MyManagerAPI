@@ -3,7 +3,11 @@ package com.yuri.mymanager.api.services;
 import java.util.List;
 
 import com.yuri.mymanager.api.entities.FechamentoDia;
-
+/**
+ * Interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 public interface FechamentoDiaService {
 	/**
 	 * retorna uma lista de fechamentos dia

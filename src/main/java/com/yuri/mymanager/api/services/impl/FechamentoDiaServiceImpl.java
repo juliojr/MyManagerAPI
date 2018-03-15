@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import com.yuri.mymanager.api.entities.FechamentoDia;
 import com.yuri.mymanager.api.repositories.FechamentoDiaRepository;
 import com.yuri.mymanager.api.services.FechamentoDiaService;
-
+/**
+ * implementação da interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 @Service
 public class FechamentoDiaServiceImpl implements FechamentoDiaService {
 	

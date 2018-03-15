@@ -12,7 +12,11 @@ import com.yuri.mymanager.api.entities.Produto;
 import com.yuri.mymanager.api.entities.Usuario;
 import com.yuri.mymanager.api.repositories.ProdutoRepository;
 import com.yuri.mymanager.api.services.ProdutoService;
-
+/**
+ * implementação da interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 @Service
 public class ProdutoServiceImpl implements ProdutoService{
 	private static final Logger log = LoggerFactory.getLogger(ProdutoServiceImpl.class);

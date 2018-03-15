@@ -10,12 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.yuri.mymanager.api.enums.SituacaoEnum;
-
+/**
+ * Mapeamento da view no banco de dados.
+ * Tratamento identico ao de tabelas, com @Id como identificador.
+ * Usado UUID_Short() no MySql para retornar um identificador unico para o registro.
+ * @author Yuri Oliveira
+ *
+ */
 @Entity
 @Table(name = "balanco_mensal")
 public class BalancoMensal implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	private Long id;
 	private SituacaoEnum situacao;
 	private Long usuarioID;

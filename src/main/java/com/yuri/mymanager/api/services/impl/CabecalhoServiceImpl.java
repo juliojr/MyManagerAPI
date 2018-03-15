@@ -15,7 +15,11 @@ import com.yuri.mymanager.api.entities.Usuario;
 import com.yuri.mymanager.api.enums.TipoEnum;
 import com.yuri.mymanager.api.repositories.CabecalhoRepository;
 import com.yuri.mymanager.api.services.CabecalhoService;
-
+/**
+ * implementação da interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 @Service
 public class CabecalhoServiceImpl implements CabecalhoService {
 	private static final Logger log = LoggerFactory.getLogger(CabecalhoServiceImpl.class);

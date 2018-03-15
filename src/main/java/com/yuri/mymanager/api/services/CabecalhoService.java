@@ -8,7 +8,11 @@ import com.yuri.mymanager.api.entities.Cabecalho;
 import com.yuri.mymanager.api.entities.Integrante;
 import com.yuri.mymanager.api.entities.Usuario;
 import com.yuri.mymanager.api.enums.TipoEnum;
-
+/**
+ * Interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 public interface CabecalhoService {
 	/**
 	 * Cadastra um novo Cabecalho

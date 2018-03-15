@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import com.yuri.mymanager.api.entities.ItensPendentes;
 import com.yuri.mymanager.api.repositories.ItensPendentesRepository;
 import com.yuri.mymanager.api.services.ItensPendentesService;
-
+/**
+ * implementação da interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 @Service
 public class ItensPendentesServiceImpl implements ItensPendentesService {
 	private static final Logger log = LoggerFactory.getLogger(ItensPendentesServiceImpl.class);

@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import com.yuri.mymanager.api.entities.Usuario;
 import com.yuri.mymanager.api.repositories.UsuarioRepository;
 import com.yuri.mymanager.api.services.UsuarioService;
-
+/**
+ * implementação da interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 

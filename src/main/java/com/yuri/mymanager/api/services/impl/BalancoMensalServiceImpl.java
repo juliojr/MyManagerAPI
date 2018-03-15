@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import com.yuri.mymanager.api.entities.BalancoMensal;
 import com.yuri.mymanager.api.repositories.BalancoMensalRepository;
 import com.yuri.mymanager.api.services.BalancoMensalService;
-
+/**
+ * implementação da interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 @Service
 public class BalancoMensalServiceImpl implements BalancoMensalService {
 	private Logger log = LoggerFactory.getLogger(BalancoMensalServiceImpl.class);

@@ -15,7 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-
+/**
+ * representação do model ta tabela no banco de dados
+ * @author Yuri Oliveira
+ *
+ */
 @Entity
 @Table(name = "produto")
 public class Produto implements Serializable {

@@ -3,7 +3,11 @@ package com.yuri.mymanager.api.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+/**
+ * Classe resposávvel pelo encrypt e decrypt da senha, no login
+ * @author Yuri Oliveira
+ *
+ */
 public class PasswordUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(PasswordUtils.class);

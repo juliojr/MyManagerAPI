@@ -8,7 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yuri.mymanager.api.entities.Cabecalho;
 import com.yuri.mymanager.api.entities.Item;
 import com.yuri.mymanager.api.entities.Produto;
-
+/**
+ * Repositório de acesso aos dados da tabela
+ * @author Yuri Oliveira
+ *
+ */
 @Transactional(readOnly = true)
 public interface ItemRepository extends JpaRepository<Item, Long> {
 	List<Item> findByCabecalho(Cabecalho cabecalho);

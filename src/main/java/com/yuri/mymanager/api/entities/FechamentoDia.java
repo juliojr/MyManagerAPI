@@ -13,7 +13,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.yuri.mymanager.api.enums.SituacaoEnum;
-
+/**
+ * Mapeamento da view no banco de dados.
+ * Tratamento identico ao de tabelas, com @Id como identificador.
+ * Usado UUID_Short() no MySql para retornar um identificador unico para o registro.
+ * @author Yuri Oliveira
+ *
+ */
 @Entity
 @Table(name="fechamento_dia")
 public class FechamentoDia implements Serializable{

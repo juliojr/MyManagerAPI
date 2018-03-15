@@ -7,7 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yuri.mymanager.api.entities.Produto;
 import com.yuri.mymanager.api.entities.Usuario;
-
+/**
+ * Repositório de acesso aos dados da tabela
+ * @author Yuri Oliveira
+ *
+ */
 @Transactional(readOnly = true)
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 

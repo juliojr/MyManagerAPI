@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 import com.yuri.mymanager.api.entities.Cabecalho;
 import com.yuri.mymanager.api.entities.Item;
 import com.yuri.mymanager.api.entities.Produto;
-
-@Service
+/**
+ * Interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 public interface ItemService {
 	/**
 	 * Cadastra um novo Item

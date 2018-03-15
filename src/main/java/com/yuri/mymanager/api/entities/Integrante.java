@@ -15,7 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-
+/**
+ * Representação do model da tabela no banco de dados.
+ * @author Yuri Oliveira
+ *
+ */
 @Entity
 @Table(name = "integrante")
 public class Integrante implements Serializable {

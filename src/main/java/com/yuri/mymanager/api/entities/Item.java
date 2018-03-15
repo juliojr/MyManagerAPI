@@ -19,7 +19,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.yuri.mymanager.api.enums.SituacaoEnum;
-
+/**
+ * Representação do model da tabela no banco de dados
+ * @author Yuri Oliveira
+ *
+ */
 @Entity
 @Table(name = "item")
 public class Item implements Serializable {

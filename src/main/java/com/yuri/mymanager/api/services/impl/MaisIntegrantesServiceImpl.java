@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import com.yuri.mymanager.api.entities.MaisIntegrantes;
 import com.yuri.mymanager.api.repositories.MaisIntegrantesRepository;
 import com.yuri.mymanager.api.services.MaisIntegrantesService;
-
+/**
+ * implementação da interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 @Service
 public class MaisIntegrantesServiceImpl implements MaisIntegrantesService {
 	private Logger log = LoggerFactory.getLogger(MaisIntegrantesServiceImpl.class);

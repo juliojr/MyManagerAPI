@@ -6,7 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yuri.mymanager.api.entities.BalancoMensal;
-
+/**
+ * Repositório de acesso aos dados da view
+ * @author Yuri Oliveira
+ *
+ */
 @Transactional(readOnly = true)
 public interface BalancoMensalRepository extends JpaRepository<BalancoMensal, Long> {
 	

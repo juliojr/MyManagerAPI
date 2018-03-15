@@ -3,7 +3,11 @@ package com.yuri.mymanager.api.services;
 import java.util.List;
 
 import com.yuri.mymanager.api.entities.MaisProdutos;
-
+/**
+ * Interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 public interface MaisProdutosService {
 	/**
 	 * retorna uma lista de produtos

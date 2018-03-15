@@ -14,7 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-
+/**
+ * representação do model da tabela no banco de dados
+ * @author Yuri Oliveira
+ *
+ */
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {

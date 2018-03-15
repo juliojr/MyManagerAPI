@@ -10,7 +10,11 @@ import com.yuri.mymanager.api.entities.Cabecalho;
 import com.yuri.mymanager.api.entities.Integrante;
 import com.yuri.mymanager.api.entities.Usuario;
 import com.yuri.mymanager.api.enums.TipoEnum;
-
+/**
+ * Repositório de acesso aos dados da tabela
+ * @author Yuri Oliveira
+ *
+ */
 @Transactional(readOnly = true)
 public interface CabecalhoRepository extends JpaRepository<Cabecalho, Long> {
 	

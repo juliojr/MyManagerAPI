@@ -10,8 +10,13 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 
 import com.yuri.mymanager.api.enums.TipoEnum;
-
-
+/**
+ * Mapeamento da view no banco de dados.
+ * Tratamento identico ao de tabelas, com @Id como identificador.
+ * Usado UUID_Short() no MySql para retornar um identificador unico para o registro.
+ * @author Yuri Oliveira
+ *
+ */
 @Entity
 @Table(name="mais_produtos")
 public class MaisProdutos implements Serializable {

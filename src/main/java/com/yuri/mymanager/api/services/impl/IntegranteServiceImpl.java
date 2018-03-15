@@ -12,7 +12,11 @@ import com.yuri.mymanager.api.entities.Integrante;
 import com.yuri.mymanager.api.entities.Usuario;
 import com.yuri.mymanager.api.repositories.IntegranteRepository;
 import com.yuri.mymanager.api.services.IntegranteService;
-
+/**
+ * implementação da interface especifica de acesso ao repositorio
+ * @author Yuri Oliveira
+ *
+ */
 @Service
 public class IntegranteServiceImpl implements IntegranteService {
 	private static final Logger log = LoggerFactory.getLogger(IntegranteServiceImpl.class);
