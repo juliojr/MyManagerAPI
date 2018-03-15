@@ -20,6 +20,7 @@ import com.yuri.mymanager.api.entities.ItensPendentes;
 import com.yuri.mymanager.api.entities.MaisIntegrantes;
 import com.yuri.mymanager.api.entities.MaisProdutos;
 import com.yuri.mymanager.api.entities.Produto;
+import com.yuri.mymanager.api.entities.SaldoProdutos;
 import com.yuri.mymanager.api.entities.Usuario;
 import com.yuri.mymanager.api.enums.SituacaoEnum;
 import com.yuri.mymanager.api.enums.TipoEnum;
@@ -33,6 +34,7 @@ import com.yuri.mymanager.api.services.impl.ItensPendentesServiceImpl;
 import com.yuri.mymanager.api.services.impl.MaisIntegrantesServiceImpl;
 import com.yuri.mymanager.api.services.impl.MaisProdutosServiceImpl;
 import com.yuri.mymanager.api.services.impl.ProdutoServiceImpl;
+import com.yuri.mymanager.api.services.impl.SaldoProdutosServiceImpl;
 import com.yuri.mymanager.api.services.impl.UsuarioServiceImpl;
 
 @RunWith(SpringRunner.class)
@@ -59,6 +61,8 @@ public class BancoTests {
 	private MaisIntegrantesServiceImpl maisIntegrantesServiceImpl;
 	@Autowired
 	private FechamentoDiaServiceImpl fechamentoDiaServiceImpl;
+	@Autowired
+	private SaldoProdutosServiceImpl saldoProdutosServiceImpl;
 	
 
 	@Test
@@ -83,6 +87,10 @@ public class BancoTests {
 		List<FechamentoDia> listaFechamentosDia = fechamentoDiaServiceImpl.buscarPorUsuarioIDEMesEAno(2L,  3,  2018);
 		
 		listaFechamentosDia.forEach(l -> System.out.println(l.toString()));
+		
+		List<SaldoProdutos> listaSaldoProdutos = saldoProdutosServiceImpl.buscarPorUsuarioID(2L);
+		
+		listaSaldoProdutos.forEach(l -> System.out.println(l.toString()));
 		
 		
 		/*
