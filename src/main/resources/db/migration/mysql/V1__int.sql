@@ -27,6 +27,7 @@ create table integrante (
   telefone varchar(20) not null,
   uf varchar(255) not null,
   usuario_id bigint(20) default null,
+  tipo_integrante varchar(255),
   primary key (id),
   key fk_integrante_usuario (usuario_id),
   constraint fk_integrante_usuario foreign key (usuario_id) references usuario (id)
@@ -93,7 +94,8 @@ values
    'rubens carbone',
    '992039581',
    'sp',
-   2);
+   2,
+   'CPF');
 insert into produto
 values
   (2, null, '2018-03-06 13:31:10', 'produto 1', 2),
@@ -143,6 +145,7 @@ select uuid_short() as id,
        it.data_criacao as integrante_data_criacao,
        it.ddd as ddd,
        it.telefone as telefone,
+       it.tipo_integrante,
        u.data_criacao as usuario_data_criacao,
        u.email as email,
        u.nome as nome,

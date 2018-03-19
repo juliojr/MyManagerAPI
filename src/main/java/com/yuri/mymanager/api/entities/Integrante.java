@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
+import com.yuri.mymanager.api.enums.TipoIntegranteEnum;
 /**
  * Representação do model da tabela no banco de dados.
  * @author Yuri Oliveira
@@ -38,6 +42,7 @@ public class Integrante implements Serializable {
 	private String Complemento;
 	private Usuario usuario;
 	private Date dataCriacao;
+	private TipoIntegranteEnum tipoIntegrante;
 	private List<Cabecalho> cabecalhos;
 
 	public Integrante() {
@@ -160,6 +165,16 @@ public class Integrante implements Serializable {
 
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+	
+	@Column(name = "tipo_integrante")
+	@Enumerated(EnumType.STRING)
+	public TipoIntegranteEnum getTipoIntegrante() {
+		return tipoIntegrante;
+	}
+
+	public void setTipoIntegrante(TipoIntegranteEnum tipoIntegrante) {
+		this.tipoIntegrante = tipoIntegrante;
 	}
 
 	@OneToMany(mappedBy = "integrante", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

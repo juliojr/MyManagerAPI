@@ -2,8 +2,6 @@ package com.yuri.mymanager.api.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.yuri.mymanager.api.entities.Cabecalho;
 import com.yuri.mymanager.api.entities.Item;
 import com.yuri.mymanager.api.entities.Produto;
