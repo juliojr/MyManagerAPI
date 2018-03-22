@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.mymanager.api.entities.Produto;
-import com.mymanager.api.entities.Usuario;
 /**
  * Interface especifica de acesso ao repositorio
  * @author Yuri Oliveira
@@ -30,13 +29,13 @@ public interface ProdutoService {
 	 * @param usuario
 	 * @return Optional<Produto>
 	 */
-	List<Produto> buscarPorUsuario(Usuario usuario);
+	List<Produto> buscarPorUsuario();
 	
 	/**
 	 * Remove um Produto
 	 * 
 	 * @param Produto
 	 */
-	void removeProduto(Produto produto);
+	void removerProduto(Produto produto);
 
 }

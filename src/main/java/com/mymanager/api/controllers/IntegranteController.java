@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.EnumUtils;
@@ -28,7 +27,7 @@ import com.mymanager.api.dtos.IntegranteDto;
 import com.mymanager.api.entities.Integrante;
 import com.mymanager.api.enums.TipoIntegranteEnum;
 import com.mymanager.api.response.Response;
-import com.mymanager.api.services.impl.IntegranteServiceImpl;
+import com.mymanager.api.services.IntegranteService;
 
 /**
  * Controller para interação da entidade Integrante
@@ -45,7 +44,7 @@ public class IntegranteController {
 	private static final Logger log = LoggerFactory.getLogger(IntegranteController.class);
 
 	@Autowired
-	private IntegranteServiceImpl integranteService;
+	private IntegranteService integranteService;
 
 	public IntegranteController() {
 	}
@@ -92,7 +91,7 @@ public class IntegranteController {
 	 * @return ResponseEntity<Response<List<IntegranteDto>>>
 	 */
 	@GetMapping
-	public ResponseEntity<Response<List<IntegranteDto>>> buscarPorUsuario(HttpServletRequest request) {
+	public ResponseEntity<Response<List<IntegranteDto>>> buscarPorUsuario() {
 		Response<List<IntegranteDto>> response = new Response<List<IntegranteDto>>();
 
 		List<Integrante> integrantes = integranteService.buscarPorUsuario();
@@ -115,7 +114,7 @@ public class IntegranteController {
 	 * Método de busca do Integrante por ID
 	 * 
 	 * @param id
-	 * @return ResponseEntity<Response<CadastroUsuarioDto>>
+	 * @return ResponseEntity<Response<IntegranteDto>>
 	 */
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Response<IntegranteDto>> buscarPorId(

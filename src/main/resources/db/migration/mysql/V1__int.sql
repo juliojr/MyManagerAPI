@@ -47,7 +47,6 @@ create table produto (
 create table cabecalho (
   id bigint(20) not null auto_increment,
   data_criacao datetime not null,
-  data_movimento date not null,
   tipo varchar(255) not null,
   integrante_id bigint(20) default null,
   usuario_id bigint(20) default null,
@@ -77,7 +76,7 @@ create table item (
   constraint fk_item_usuario foreign key (usuario_id) references usuario (id)
 ) engine=innodb auto_increment=1 default charset=utf8;
 
-
+/*
 --inserts de teste
 insert into usuario values (2, '2018-03-06 09:54:57', 'yuriodp@gmail.com', 'yuri oliveira de paula', 'abc123@');
 insert into integrante
@@ -103,8 +102,8 @@ values
   (4, null, '2018-03-06 13:31:21', 'produto 3', 2);
 insert into cabecalho
 values
-  (2, '2018-03-06 13:31:08', '2018-03-06', 'COMPRA', 2, 2),
-  (3, '2018-03-06 13:36:07', '2018-03-06', 'VENDA', 2, 2);
+  (2, '2018-03-06 13:31:08', 'COMPRA', 2, 2),
+  (3, '2018-03-06 13:36:07', 'VENDA', 2, 2);
 insert into item
 values
   (2, '2018-03-06 13:31:13', '2018-03-06', 'ABERTO', 500, 15, 2, 2, 2),
@@ -114,7 +113,7 @@ values
   (6, '2018-03-06 13:36:25', '2018-03-06', 'PAGO', 30, 25, 3, 3, 2),
   (7, '2018-03-06 13:36:29', '2018-03-06', 'PAGO', 10, 80, 3, 4, 2);
   
-  
+  */
   
 --criação das views
 create or replace view view_geral as 

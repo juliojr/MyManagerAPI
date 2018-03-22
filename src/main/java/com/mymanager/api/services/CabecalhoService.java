@@ -1,12 +1,10 @@
 package com.mymanager.api.services;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import com.mymanager.api.entities.Cabecalho;
 import com.mymanager.api.entities.Integrante;
-import com.mymanager.api.entities.Usuario;
 import com.mymanager.api.enums.TipoEnum;
 /**
  * Interface especifica de acesso ao repositorio
@@ -41,36 +39,28 @@ public interface CabecalhoService {
 	 * @param usuario
 	 * @return List<Cabecalho>
 	 */
-	List<Cabecalho> buscarPorTipoEUsuario(TipoEnum tipo, Usuario usuario);
-
-	/**
-	 * Retorna uma lista de cabecalhos
-	 * @param dataMovimento
-	 * @param usuario
-	 * @return List<Cabecalho>
-	 */
-	List<Cabecalho> buscarPorDataMovimentoEUsuario(Date dataMovimento, Usuario usuario);
+	List<Cabecalho> buscarPorTipo(TipoEnum tipo);
 	
 	/**
 	 * Retorna uma lista de usuários
 	 * @param usuario
 	 * @return List<Cabecalho>
 	 */
-	List<Cabecalho> buscarPorUsuario(Usuario usuario);
+	List<Cabecalho> buscarPorUsuario();
 	
 	/**
 	 * Remove um Cabecalho
 	 * 
 	 * @param Cabecalho
 	 */
-	void removeCabecalho(Cabecalho cabecalho);
+	void removerCabecalho(Cabecalho cabecalho);
 	
 	/**
 	 * Remove os itens e depois o Cabecalho
 	 * 
 	 * @param Cabecalho
 	 */
-	void removeItensECabecalho(Cabecalho cabecalho);
+	void removerItensECabecalho(Cabecalho cabecalho);
 	
 	
 }

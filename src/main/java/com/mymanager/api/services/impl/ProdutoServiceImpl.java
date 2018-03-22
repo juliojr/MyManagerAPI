@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.mymanager.api.entities.Produto;
 import com.mymanager.api.entities.Usuario;
 import com.mymanager.api.repositories.ProdutoRepository;
+import com.mymanager.api.security.services.UsuarioLogadoServiceImpl;
 import com.mymanager.api.services.ProdutoService;
 /**
  * implementação da interface especifica de acesso ao repositorio
@@ -18,7 +19,7 @@ import com.mymanager.api.services.ProdutoService;
  *
  */
 @Service
-public class ProdutoServiceImpl implements ProdutoService{
+public class ProdutoServiceImpl extends UsuarioLogadoServiceImpl implements ProdutoService{
 	private static final Logger log = LoggerFactory.getLogger(ProdutoServiceImpl.class);
 	
 	@Autowired
@@ -26,7 +27,8 @@ public class ProdutoServiceImpl implements ProdutoService{
 	
 	@Override
 	public Optional<Produto> buscarPorId(Long id) {
-		log.info("Buscando produto por ID: {}", id);
+		Usuario usuario = this.getusuarioAutenticado().get();
+		log.info("Buscando produto por ID: {} e usuario: {}", id, usuario);
 		return Optional.ofNullable(this.produtoRepository.findById(id));
 	}
 
@@ -37,13 +39,14 @@ public class ProdutoServiceImpl implements ProdutoService{
 	}
 
 	@Override
-	public List<Produto> buscarPorUsuario(Usuario usuario) {
+	public List<Produto> buscarPorUsuario() {
+		Usuario usuario = this.getusuarioAutenticado().get();
 		log.info("Buscando produtos por Usuario: {}", usuario);
 		return this.produtoRepository.findByUsuario(usuario);
 	}
 
 	@Override
-	public void removeProduto(Produto produto) {
+	public void removerProduto(Produto produto) {
 		log.info("Removendo produto: {}", produto);
 		this.produtoRepository.delete(produto.getId());
 	}

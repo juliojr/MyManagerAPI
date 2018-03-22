@@ -1,6 +1,5 @@
 package com.mymanager.api.repositories;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,13 +17,11 @@ import com.mymanager.api.enums.TipoEnum;
 @Transactional(readOnly = true)
 public interface CabecalhoRepository extends JpaRepository<Cabecalho, Long> {
 	
-	Cabecalho findById(Long id);
+	Cabecalho findByIdAndUsuario(Long id, Usuario usuario);
 	
-	List<Cabecalho> findByIntegrante(Integrante integrante);
+	List<Cabecalho> findByIntegranteAndUsuario(Integrante integrante, Usuario usuario);
 
 	List<Cabecalho> findByTipoAndUsuario(TipoEnum tipo, Usuario usuario);
-
-	List<Cabecalho> findByDataMovimentoAndUsuario(Date dataMovimento, Usuario usuario);
 
 	List<Cabecalho> findByUsuario(Usuario usuario);
 

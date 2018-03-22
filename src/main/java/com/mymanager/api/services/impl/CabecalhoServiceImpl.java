@@ -1,6 +1,5 @@
 package com.mymanager.api.services.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,21 +13,23 @@ import com.mymanager.api.entities.Integrante;
 import com.mymanager.api.entities.Usuario;
 import com.mymanager.api.enums.TipoEnum;
 import com.mymanager.api.repositories.CabecalhoRepository;
+import com.mymanager.api.security.services.UsuarioLogadoServiceImpl;
 import com.mymanager.api.services.CabecalhoService;
+import com.mymanager.api.services.ItemService;
 /**
  * implementação da interface especifica de acesso ao repositorio
  * @author Yuri Oliveira
  *
  */
 @Service
-public class CabecalhoServiceImpl implements CabecalhoService {
+public class CabecalhoServiceImpl extends UsuarioLogadoServiceImpl implements CabecalhoService {
 	private static final Logger log = LoggerFactory.getLogger(CabecalhoServiceImpl.class);
 	
 	@Autowired
 	private CabecalhoRepository cabecalhoRepository;
 	
 	@Autowired
-	private ItemServiceImpl itemService;
+	private ItemService itemService;
 	
 	
 	@Override
@@ -39,42 +40,40 @@ public class CabecalhoServiceImpl implements CabecalhoService {
 	
 	@Override
 	public Optional<Cabecalho> buscarPorId(Long id) {
-		log.info("Buscando cabecalho por ID: {}", id); 
-		return Optional.ofNullable(this.cabecalhoRepository.findById(id));
+		Usuario usuario = this.getusuarioAutenticado().get();
+		log.info("Buscando cabecalho por ID: {} e Usuario{ }", id, usuario); 
+		return Optional.ofNullable(this.cabecalhoRepository.findByIdAndUsuario(id, usuario));
 	}
 
 	@Override
 	public List<Cabecalho> buscarPorIntegrante(Integrante integrante) {
-		log.info("Buscando cabecalhos por Integrante: {}", integrante); 
-		return this.cabecalhoRepository.findByIntegrante(integrante);
+		Usuario usuario = this.getusuarioAutenticado().get();
+		log.info("Buscando cabecalhos por Integrante: {} e Usuario: {}", integrante, usuario); 
+		return this.cabecalhoRepository.findByIntegranteAndUsuario(integrante, usuario);
 	}
 
 	@Override
-	public List<Cabecalho> buscarPorTipoEUsuario(TipoEnum tipo, Usuario usuario) {
+	public List<Cabecalho> buscarPorTipo(TipoEnum tipo) {
+		Usuario usuario = this.getusuarioAutenticado().get();
 		log.info("Buscando cabecalhos por Tipo: {} e Usuario: {}", tipo, usuario); 
 		return this.cabecalhoRepository.findByTipoAndUsuario(tipo, usuario);
 	}
 
 	@Override
-	public List<Cabecalho> buscarPorDataMovimentoEUsuario(Date dataMovimento, Usuario usuario) {
-		log.info("Buscando cabecalhos por Data: {} e Usuario: {}", dataMovimento, usuario); 
-		return this.cabecalhoRepository.findByDataMovimentoAndUsuario(dataMovimento, usuario);
-	}
-
-	@Override
-	public List<Cabecalho> buscarPorUsuario(Usuario usuario) {
+	public List<Cabecalho> buscarPorUsuario() {
+		Usuario usuario = this.getusuarioAutenticado().get();
 		log.info("Buscando cabecalhos por Usuario: {}", usuario);
 		return this.cabecalhoRepository.findByUsuario(usuario);
 	}
 
 	@Override
-	public void removeCabecalho(Cabecalho cabecalho) {
+	public void removerCabecalho(Cabecalho cabecalho) {
 		log.info("Removendo Cabecalho: {}", cabecalho);
 		this.cabecalhoRepository.delete(cabecalho.getId());
 	}
 
 	@Override
-	public void removeItensECabecalho(Cabecalho cabecalho) {
+	public void removerItensECabecalho(Cabecalho cabecalho) {
 		log.info("Removendo Itens e Cabecalho: {}", cabecalho);
 		//tenta remover primeiro os itens
 		this.itemService.removeItensPorCabecalho(cabecalho);

@@ -33,7 +33,6 @@ public class Cabecalho implements Serializable {
 
 	private Long id;
 	private Integrante integrante;
-	private Date dataMovimento;
 	private TipoEnum tipo;
 	private Usuario usuario;
 	private Date dataCriacao;
@@ -60,15 +59,6 @@ public class Cabecalho implements Serializable {
 
 	public void setIntegrante(Integrante integrante) {
 		this.integrante = integrante;
-	}
-
-	@Column(name = "data_movimento", nullable = false)
-	public Date getDataMovimento() {
-		return dataMovimento;
-	}
-
-	public void setDataMovimento(Date dataMovimento) {
-		this.dataMovimento = dataMovimento;
 	}
 
 	@Enumerated(EnumType.STRING)
@@ -116,8 +106,8 @@ public class Cabecalho implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cabecalho [id=" + id + ", integrante=" + integrante + ", dataMovimento=" + dataMovimento + ", tipo="
-				+ tipo + ", usuario=" + usuario + ", dataCriacao=" + dataCriacao + ", itens=" + itens + "]";
+		return "Cabecalho [id=" + id + ", integrante=" + integrante + ", tipo=" + tipo + ", usuario=" + usuario
+				+ ", dataCriacao=" + dataCriacao + ", itens=" + itens + "]";
 	}
 
 }

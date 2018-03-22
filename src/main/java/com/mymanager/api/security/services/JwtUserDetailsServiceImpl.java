@@ -25,7 +25,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 	private UsuarioService usuarioService;
 
 	private Usuario usuarioLogado = new Usuario();
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Usuario> usuario = this.usuarioService.buscarPorEmail(username);
@@ -45,6 +45,5 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
-	
-	
+
 }

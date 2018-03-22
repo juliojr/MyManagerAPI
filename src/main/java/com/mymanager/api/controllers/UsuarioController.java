@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mymanager.api.dtos.UsuarioDto;
 import com.mymanager.api.entities.Usuario;
 import com.mymanager.api.response.Response;
-import com.mymanager.api.services.impl.UsuarioServiceImpl;
+import com.mymanager.api.services.UsuarioService;
 import com.mymanager.api.utils.PasswordUtils;
 
 /**
@@ -37,7 +37,7 @@ public class UsuarioController {
 	private static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
 	@Autowired
-	private UsuarioServiceImpl usuarioService;
+	private UsuarioService usuarioService;
 
 	public UsuarioController() {
 

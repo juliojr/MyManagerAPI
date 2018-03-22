@@ -20,7 +20,7 @@ import com.mymanager.api.security.filters.JwtAuthenticationTokenFilter;
 /**
  * habilita e seta as configurações de segurança do Spring Security
  * 
- * @names -> responsáveis por setar as configurações padrões
+ * @Anotations -> responsáveis por setar as configurações padrões
  * 
  */
 @Configuration
