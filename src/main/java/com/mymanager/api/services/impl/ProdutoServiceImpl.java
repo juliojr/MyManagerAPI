@@ -34,6 +34,8 @@ public class ProdutoServiceImpl extends UsuarioLogadoServiceImpl implements Prod
 
 	@Override
 	public Produto persistir(Produto produto) {
+		Usuario usuarioAutenticado = this.getusuarioAutenticado().get();
+		produto.setUsuario(usuarioAutenticado);
 		log.info("Persistindo produto: {}", produto);
 		return this.produtoRepository.save(produto);
 	}

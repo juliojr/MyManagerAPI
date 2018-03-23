@@ -34,6 +34,8 @@ public class CabecalhoServiceImpl extends UsuarioLogadoServiceImpl implements Ca
 	
 	@Override
 	public Cabecalho persistir(Cabecalho cabecalho) {
+		Usuario usuarioAutenticado = this.getusuarioAutenticado().get();
+		cabecalho.setUsuario(usuarioAutenticado);
 		log.info("Persistindo cabecalho: {}", cabecalho);
 		return this.cabecalhoRepository.save(cabecalho);
 	}
@@ -41,7 +43,7 @@ public class CabecalhoServiceImpl extends UsuarioLogadoServiceImpl implements Ca
 	@Override
 	public Optional<Cabecalho> buscarPorId(Long id) {
 		Usuario usuario = this.getusuarioAutenticado().get();
-		log.info("Buscando cabecalho por ID: {} e Usuario{ }", id, usuario); 
+		log.info("Buscando cabecalho por ID: {} e Usuario {}", id, usuario); 
 		return Optional.ofNullable(this.cabecalhoRepository.findByIdAndUsuario(id, usuario));
 	}
 

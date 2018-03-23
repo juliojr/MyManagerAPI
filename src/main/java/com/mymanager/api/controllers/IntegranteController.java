@@ -103,8 +103,10 @@ public class IntegranteController {
 		}
 
 		List<IntegranteDto> integrantesDto = new ArrayList<IntegranteDto>();
-
-		integrantes.forEach(integrante -> integrantesDto.add(this.converterIntegranteParaDto(integrante)));
+		
+		integrantes
+			.stream().sorted((i1, i2) -> i1.getId().compareTo(i2.getId()))
+				.forEach(integrante -> integrantesDto.add(this.converterIntegranteParaDto(integrante)));
 
 		response.setData(integrantesDto);
 		return ResponseEntity.ok(response);
@@ -166,6 +168,12 @@ public class IntegranteController {
 		}
 
 		this.atualizarDadosIntegrante(integrante.get(), integranteDto, result);
+
+		if (result.hasErrors()) {
+			log.error("Erro validando integrante: {}", result.getAllErrors());
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
 
 		this.integranteService.persistir(integrante.get());
 		response.setData(this.converterIntegranteParaDto(integrante.get()));
@@ -232,29 +240,8 @@ public class IntegranteController {
 	 */
 	public Integrante converterDtoParaIntegrante(IntegranteDto integranteDto, BindingResult result) {
 		Integrante integrante = new Integrante();
-		integrante.setBairro(integranteDto.getBairro());
-		integrante.setCidade(integranteDto.getCidade());
-		integrante.setComplemento(integranteDto.getComplemento());
-		integrante.setDdd(integranteDto.getDdd());
-		integrante.setNome(integranteDto.getNome());
-		integrante.setNumero(integranteDto.getNumero());
-		integrante.setRua(integranteDto.getRua());
-		integrante.setTelefone(integranteDto.getTelefone());
 
-		if (EnumUtils.isValidEnum(TipoIntegranteEnum.class, integranteDto.getTipoIntegrante())) {
-
-			if (TipoIntegranteEnum.valueOf(integranteDto.getTipoIntegrante()).equals(TipoIntegranteEnum.CPF)) {
-				integrante.setCpfCnpj(integranteDto.getCpf());
-			} else {
-				integrante.setCpfCnpj(integranteDto.getCnpj());
-			}
-
-			integrante.setTipoIntegrante(TipoIntegranteEnum.valueOf(integranteDto.getTipoIntegrante()));
-		} else {
-			result.getAllErrors().add(new ObjectError("tipoIntegrante", "tipoIntegrante inválido."));
-		}
-
-		integrante.setUf(integranteDto.getUf());
+		this.atualizarDadosIntegrante(integrante, integranteDto, result);
 
 		return integrante;
 	}
@@ -310,7 +297,7 @@ public class IntegranteController {
 
 			integrante.setTipoIntegrante(TipoIntegranteEnum.valueOf(integranteDto.getTipoIntegrante()));
 		} else {
-			result.getAllErrors().add(new ObjectError("tipoIntegrante", "tipoIntegrante inválido."));
+			result.addError(new ObjectError("tipoIntegrante", "tipoIntegrante inválido."));
 		}
 
 		integrante.setDdd(integranteDto.getDdd());
@@ -319,5 +306,6 @@ public class IntegranteController {
 		integrante.setRua(integranteDto.getRua());
 		integrante.setTelefone(integranteDto.getTelefone());
 		integrante.setUf(integranteDto.getUf());
+		integrante.setId(integranteDto.getId());
 	}
 }

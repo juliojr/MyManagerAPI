@@ -1,0 +1,147 @@
+Passo a para teste:
+configuração padrão: 
+  - content-type: application/json;
+
+--cria um usuário novo:
+POST: http://localhost:8080/api/usuario/cadastrar
+{
+  "nome": "yuri oliveira de paula",
+  "email": "yuridpaula@live.com",
+  "senha": "123456"
+}
+
+--vai retornar ok, depois precisa solicitar um token:
+POST: http://localhost:8080/auth
+{
+  "email": "yuridpaula@live.com",
+  "senha": "123456"
+}
+
+--vai retornar o token. colocar o token no header..
+  - Authorization: Bearer + token
+
+--inserir um integrante:
+POST: http://localhost:8080/api/integrante
+{
+	"cpf": "39063491875",
+	"cnpj": null,
+	"nome": "Integrante de teste",
+	"ddd": 16,
+    "telefone": 992039581,
+    "uf": "sp",
+    "cidade": "franca",
+    "bairro": "luiza 2",
+    "rua": "rubens carbone",
+    "numero": 2965,
+    "tipoIntegrante": "CPF",
+    "complemento": "apto 11"
+}
+
+--inserir produtos:
+POST: http://localhost:8080/api/produto
+{
+	"descricao": "produto teste 1",
+	"caminhoFoto": ""
+}
+{
+	"descricao": "produto teste 2",
+	"caminhoFoto": ""
+}
+{
+	"descricao": "produto teste 3",
+	"caminhoFoto": ""
+}
+
+
+--inserir cabecalhos:
+{
+	"integranteId": 1,
+	"tipo": "COMPRA"
+}
+{
+	"integranteId": 1,
+	"tipo": "VENDA"
+}
+
+--inserir itens:
+http://localhost:8080/api/item
+{
+	"cabecalhoId":1,
+	"produtoId": 1,
+	"quantidade": 50,
+	"unitario": 10,
+	"dataPagamento": "23/01/2018",
+	"situacao": "PAGO"
+}
+{
+	"cabecalhoId":1,
+	"produtoId": 2,
+	"quantidade": 10,
+	"unitario": 100,
+	"dataPagamento": "23/01/2018",
+	"situacao": "PAGO"
+}
+{
+	"cabecalhoId":1,
+	"produtoId": 3,
+	"quantidade": 5,
+	"unitario": 40,
+	"dataPagamento": "23/01/2018",
+	"situacao": "PAGO"
+}
+{
+	"cabecalhoId":2,
+	"produtoId": 1,
+	"quantidade": 5,
+	"unitario": 20,
+	"dataPagamento": "20/02/2018",
+	"situacao": "PAGO"
+}
+{
+	"cabecalhoId":2,
+	"produtoId": 2,
+	"quantidade": 1,
+	"unitario": 180,
+	"dataPagamento": "20/02/2018",
+	"situacao": "PAGO"
+}
+{
+	"cabecalhoId":2,
+	"produtoId": 3,
+	"quantidade": 1,
+	"unitario": 35,
+	"dataPagamento": "20/02/2018",
+	"situacao": "PAGO"
+}
+{
+	"cabecalhoId":2,
+	"produtoId": 1,
+	"quantidade": 2,
+	"unitario": 15,
+	"dataPagamento": "23/03/2018",
+	"situacao": "ABERTO"
+}
+{
+	"cabecalhoId":2,
+	"produtoId": 2,
+	"quantidade": 1,
+	"unitario": 250,
+	"dataPagamento": "23/03/2018",
+	"situacao": "ABERTO"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

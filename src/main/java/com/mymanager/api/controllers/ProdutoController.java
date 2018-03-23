@@ -101,7 +101,9 @@ public class ProdutoController {
 
 		List<ProdutoDto> produtosDto = new ArrayList<ProdutoDto>();
 
-		produtos.forEach(produto -> produtosDto.add(this.converterProdutoParaDto(produto)));
+		produtos
+			.stream().sorted((p1, p2) -> p1.getDescricao().compareTo(p2.getDescricao()))
+				.forEach(produto -> produtosDto.add(this.converterProdutoParaDto(produto)));
 
 		response.setData(produtosDto);
 		return ResponseEntity.ok(response);
@@ -164,6 +166,12 @@ public class ProdutoController {
 
 		this.atualizarDadosProduto(produto.get(), produtoDto, result);
 
+		if(result.hasErrors()) {
+			log.error("Erro validando Produto: {}", result.getAllErrors());
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
+		
 		this.produtoService.persistir(produto.get());
 		response.setData(this.converterProdutoParaDto(produto.get()));
 		return ResponseEntity.ok(response);
@@ -218,9 +226,9 @@ public class ProdutoController {
 	 */
 	public Produto converterDtoParaProduto(ProdutoDto produtoDto, BindingResult result) {
 		Produto produto = new Produto();
-		produto.setCaminhoFoto(produtoDto.getCaminhoFoto());
-		produto.setDescricao(produtoDto.getDescricao());
-
+		
+		this.atualizarDadosProduto(produto, produtoDto, result);
+		
 		return produto;
 	}
 

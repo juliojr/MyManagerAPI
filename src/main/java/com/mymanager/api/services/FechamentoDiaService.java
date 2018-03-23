@@ -16,5 +16,5 @@ public interface FechamentoDiaService {
 	 * @param ano
 	 * @return List<FfechamentoDia>
 	 */
-	List<FechamentoDia> buscarPorUsuarioIDEMesEAno(Long usuarioID, Integer mes,Integer ano);
+	List<FechamentoDia> buscarPorMesEAno(Integer mes,Integer ano);
 }

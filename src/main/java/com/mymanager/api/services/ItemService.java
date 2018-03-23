@@ -1,23 +1,36 @@
 package com.mymanager.api.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.mymanager.api.entities.Cabecalho;
 import com.mymanager.api.entities.Item;
 import com.mymanager.api.entities.Produto;
+
 /**
  * Interface especifica de acesso ao repositorio
+ * 
  * @author Yuri Oliveira
  *
  */
 public interface ItemService {
+
+	/**
+	 * retorna um Item
+	 * 
+	 * @param id
+	 * @return Optional<Item>
+	 */
+	Optional<Item> buscarPorId(Long id);
+
 	/**
 	 * Cadastra um novo Item
+	 * 
 	 * @param Item
 	 * @return Item
 	 */
 	Item persistir(Item item);
-	
+
 	/**
 	 * Retorna uma lista de Itens
 	 * 
@@ -33,16 +46,16 @@ public interface ItemService {
 	 * @return List<Itens>
 	 */
 	List<Item> buscarPorProduto(Produto produto);
-	
+
 	/**
 	 * Remove um Item
 	 * 
 	 * @Param Item
 	 */
 	void removeItem(Item item);
-	
+
 	/**
-	 *Rremove itens pelo Cabecalho
+	 * Rremove itens pelo Cabecalho
 	 * 
 	 * @param Cabecalho
 	 */

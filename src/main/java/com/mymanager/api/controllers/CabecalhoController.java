@@ -108,8 +108,10 @@ public class CabecalhoController {
 
 		List<CabecalhoDto> cabecalhosDto = new ArrayList<CabecalhoDto>();
 
-		cabecalhos.forEach(cabecalho -> cabecalhosDto.add(this.converterCabecalhoParaDto(cabecalho)));
-
+		cabecalhos
+			.stream().sorted((c1, c2) -> c1.getId().compareTo(c2.getId()))
+				.forEach(cabecalho -> cabecalhosDto.add(this.converterCabecalhoParaDto(cabecalho)));
+		
 		response.setData(cabecalhosDto);
 		return ResponseEntity.ok(response);
 	}
@@ -171,6 +173,12 @@ public class CabecalhoController {
 
 		this.atualizarDadosCabecalho(cabecalho.get(), cabecalhoDto, result);
 
+		if (result.hasErrors()) {
+			log.error("Erro validando item: {}", result.getAllErrors());
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
+
 		this.cabecalhoService.persistir(cabecalho.get());
 		response.setData(this.converterCabecalhoParaDto(cabecalho.get()));
 		return ResponseEntity.ok(response);
@@ -228,20 +236,8 @@ public class CabecalhoController {
 	public Cabecalho converterDtoParaCabecalho(CabecalhoDto cabecalhoDto, BindingResult result) {
 		Cabecalho cabecalho = new Cabecalho();
 
-		Optional<Integrante> integrante = this.integranteService.buscarPorId(cabecalhoDto.getIntegranteId());
+		this.atualizarDadosCabecalho(cabecalho, cabecalhoDto, result);
 
-		if (!integrante.isPresent()) {
-			result.getAllErrors().add(new ObjectError("integrante", "integrante inválido."));
-		} else {
-			cabecalho.setIntegrante(integrante.get());
-		}
-
-		if (EnumUtils.isValidEnum(TipoEnum.class, cabecalhoDto.getTipo())) {
-			cabecalho.setTipo(TipoEnum.valueOf(cabecalhoDto.getTipo()));
-		} else {
-			result.getAllErrors().add(new ObjectError("tipo", "tipo inválido."));
-		}
-		
 		return cabecalho;
 	}
 
@@ -270,7 +266,7 @@ public class CabecalhoController {
 		Optional<Integrante> integrante = this.integranteService.buscarPorId(cabecalhoDto.getIntegranteId());
 
 		if (!integrante.isPresent()) {
-			result.getAllErrors().add(new ObjectError("integrante", "integrante inválido."));
+			result.addError(new ObjectError("integrante", "integrante inválido."));
 		} else {
 			cabecalho.setIntegrante(integrante.get());
 		}
@@ -278,7 +274,9 @@ public class CabecalhoController {
 		if (EnumUtils.isValidEnum(TipoEnum.class, cabecalhoDto.getTipo())) {
 			cabecalho.setTipo(TipoEnum.valueOf(cabecalhoDto.getTipo()));
 		} else {
-			result.getAllErrors().add(new ObjectError("tipo", "tipo inválido."));
+			result.addError(new ObjectError("tipo", "tipo inválido."));
 		}
+
+		cabecalho.setId(cabecalhoDto.getId());
 	}
 }

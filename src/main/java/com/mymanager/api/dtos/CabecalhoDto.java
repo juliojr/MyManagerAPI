@@ -1,7 +1,5 @@
 package com.mymanager.api.dtos;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class CabecalhoDto {
 	private Long id;
 	private Long integranteId;
@@ -15,7 +13,6 @@ public class CabecalhoDto {
 		this.id = id;
 	}
 
-	@NotEmpty(message = "Integrante não pode ser vazio.")
 	public Long getIntegranteId() {
 		return integranteId;
 	}

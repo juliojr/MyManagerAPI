@@ -9,24 +9,27 @@ import org.springframework.stereotype.Service;
 
 import com.mymanager.api.entities.FechamentoDia;
 import com.mymanager.api.repositories.FechamentoDiaRepository;
+import com.mymanager.api.security.services.UsuarioLogadoServiceImpl;
 import com.mymanager.api.services.FechamentoDiaService;
+
 /**
  * implementação da interface especifica de acesso ao repositorio
+ * 
  * @author Yuri Oliveira
  *
  */
 @Service
-public class FechamentoDiaServiceImpl implements FechamentoDiaService {
-	
+public class FechamentoDiaServiceImpl extends UsuarioLogadoServiceImpl implements FechamentoDiaService {
+
 	private Logger log = LoggerFactory.getLogger(FechamentoDiaServiceImpl.class);
-	
+
 	@Autowired
 	private FechamentoDiaRepository fechamentoDiaRepository;
-	
+
 	@Override
-	public List<FechamentoDia> buscarPorUsuarioIDEMesEAno(Long usuarioID, Integer mes, Integer ano) {
+	public List<FechamentoDia> buscarPorMesEAno(Integer mes, Integer ano) {
+		Long usuarioID = this.getusuarioAutenticado().get().getId();
 		log.info("Buscando fechamentos dia. usuarioID: {} - mes: {} - ano: {}", usuarioID, mes, ano);
 		return this.fechamentoDiaRepository.findByUsuarioIDAndMesAndAno(usuarioID, mes, ano);
 	}
-
 }

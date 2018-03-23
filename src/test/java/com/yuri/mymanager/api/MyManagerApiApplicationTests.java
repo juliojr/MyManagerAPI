@@ -7,12 +7,13 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes=MyManagerApiApplicationTests.class)
 @ActiveProfiles("test")
 public class MyManagerApiApplicationTests {
 
 	@Test
 	public void contextLoads() {
 	}
+	
 
 }
