@@ -170,7 +170,7 @@ select uuid_short() as id,
                sum(if((v.tipo = 'COMPRA'), v.valor_total, 0)) as compra,
                sum(if((v.tipo = 'VENDA'), v.valor_total, 0)) as venda,
                sum(if((v.tipo = 'VENDA'), v.valor_total, (v.valor_total * - (1)))) as geral
-          from db.view_geral v
+          from view_geral v
          group by v.usuario_id, v.ano, v.mes
         union all
         select v.situacao as situacao,
@@ -180,7 +180,7 @@ select uuid_short() as id,
                sum(if((v.tipo = 'COMPRA'), v.valor_total, 0)) as compra,
                sum(if((v.tipo = 'VENDA'), v.valor_total, 0)) as venda,
                sum(if((v.tipo = 'VENDA'), v.valor_total, (v.valor_total * - (1)))) as geral
-          from db.view_geral v
+          from view_geral v
          group by v.situacao, v.usuario_id, v.ano, v.mes) a;
 
 create or replace view fechamento_dia as 
@@ -199,10 +199,10 @@ select uuid_short() as id,
                         v.dia as dia,
                         v.situacao as situacao,
                         (select sum(if((vv.tipo = 'VENDA'), vv.valor_total, (vv.valor_total * - (1)))) as valor_total
-                           from db.view_geral vv
+                           from view_geral vv
                           where ((vv.usuario_id = v.usuario_id) and (vv.situacao = v.situacao) and
                                 (vv.data_pagamento <= v.data_pagamento) and (vv.situacao = 'PAGO'))) as valor_total
-          from db.view_geral v
+          from view_geral v
          where (v.situacao = 'PAGO')
         union
         select distinct v.usuario_id as usuario_id,
@@ -212,9 +212,9 @@ select uuid_short() as id,
                         v.dia as dia,
                         'GERAL' as situacao,
                         (select sum(if((vv.tipo = 'VENDA'), vv.valor_total, (vv.valor_total * - (1)))) as valor_total
-                           from db.view_geral vv
+                           from view_geral vv
                           where ((vv.usuario_id = v.usuario_id) and (vv.data_pagamento <= v.data_pagamento))) as valor_total
-          from db.view_geral v
+          from view_geral v
         union
         select distinct v.usuario_id as usuario_id,
                         last_day(v.data_pagamento) as data_pagamento,
@@ -223,10 +223,10 @@ select uuid_short() as id,
                         dayofmonth(last_day(v.data_pagamento)) as dia,
                         v.situacao as situacao,
                         (select sum(if((vv.tipo = 'VENDA'), vv.valor_total, (vv.valor_total * - (1)))) as valor_total
-                           from db.view_geral vv
+                           from view_geral vv
                           where ((vv.usuario_id = v.usuario_id) and (vv.data_pagamento <= last_day(v.data_pagamento)) and
                                 (vv.situacao = 'PAGO'))) as valor_total
-          from db.view_geral v
+          from view_geral v
          where (v.situacao = 'PAGO')
         union
         select distinct v.usuario_id as usuario_id,
@@ -236,11 +236,11 @@ select uuid_short() as id,
                         1 as dia,
                         v.situacao as situacao,
                         (select sum(if((vv.tipo = 'VENDA'), vv.valor_total, (vv.valor_total * - (1)))) as valor_total
-                           from db.view_geral vv
+                           from view_geral vv
                           where ((vv.usuario_id = v.usuario_id) and
                                 (vv.data_pagamento <= str_to_date(concat_ws(',', 1, v.mes, v.ano), '%d,%m,%y')) and
                                 (vv.situacao = 'PAGO'))) as valor_total
-          from db.view_geral v
+          from view_geral v
          where (v.situacao = 'PAGO')
         union
         select distinct v.usuario_id as usuario_id,
@@ -250,9 +250,9 @@ select uuid_short() as id,
                         dayofmonth(last_day(v.data_pagamento)) as dia,
                         'GERAL' as situacao,
                         (select sum(if((vv.tipo = 'VENDA'), vv.valor_total, (vv.valor_total * - (1)))) as valor_total
-                           from db.view_geral vv
+                           from view_geral vv
                           where ((vv.usuario_id = v.usuario_id) and (vv.data_pagamento <= last_day(v.data_pagamento)))) as valor_total
-          from db.view_geral v
+          from view_geral v
         union
         select distinct v.usuario_id as usuario_id,
                         str_to_date(concat_ws(',', 1, v.mes, v.ano), '%d,%m,%y') as data_pagamento,
@@ -261,10 +261,10 @@ select uuid_short() as id,
                         1 as dia,
                         'GERAL' as situacao,
                         (select sum(if((vv.tipo = 'VENDA'), vv.valor_total, (vv.valor_total * - (1)))) as valor_total
-                           from db.view_geral vv
+                           from view_geral vv
                           where ((vv.usuario_id = v.usuario_id) and
                                 (vv.data_pagamento <= str_to_date(concat_ws(',', 1, v.mes, v.ano), '%d,%m,%y')))) as valor_total
-          from db.view_geral v) a
+          from view_geral v) a
  order by a.usuario_id, a.situacao, a.data_pagamento;
 
 create or replace view itens_pendentes as 
