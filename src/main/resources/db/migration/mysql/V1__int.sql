@@ -1,3 +1,4 @@
+/* forcei manualmente no banco
 --criação das tabelas
 create table usuario (
   id bigint(20) not null auto_increment,
@@ -72,44 +73,6 @@ create table item (
   constraint fk_item_usuario foreign key (usuario_id) references usuario (id)
 ) engine=innodb auto_increment=1 default charset=utf8;
 
-/*
---inserts de teste
-insert into usuario values (2, '2018-03-06 09:54:57', 'yuriodp@gmail.com', 'yuri oliveira de paula', 'abc123@');
-insert into integrante
-values
-  (2,
-   'luiza 2',
-   'franca',
-   'apto 11',
-   '39063491875',
-   '2018-03-06 13:31:02',
-   16,
-   'yuri oliveira de paula',
-   2965,
-   'rubens carbone',
-   '992039581',
-   'sp',
-   2,
-   'CPF');
-insert into produto
-values
-  (2, null, '2018-03-06 13:31:10', 'produto 1', 2),
-  (3, null, '2018-03-06 13:31:16', 'produto 2', 2),
-  (4, null, '2018-03-06 13:31:21', 'produto 3', 2);
-insert into cabecalho
-values
-  (2, '2018-03-06 13:31:08', 'COMPRA', 2, 2),
-  (3, '2018-03-06 13:36:07', 'VENDA', 2, 2);
-insert into item
-values
-  (2, '2018-03-06 13:31:13', '2018-03-06', 'ABERTO', 500, 15, 2, 2, 2),
-  (3, '2018-03-06 13:31:19', '2018-04-06', 'ABERTO', 300, 10, 2, 3, 2),
-  (4, '2018-03-06 13:31:24', '2018-05-06', 'ABERTO', 100, 50, 2, 4, 2),
-  (5, '2018-03-06 13:36:21', '2018-06-06', 'ABERTO', 50, 20, 3, 2, 2),
-  (6, '2018-03-06 13:36:25', '2018-03-06', 'PAGO', 30, 25, 3, 3, 2),
-  (7, '2018-03-06 13:36:29', '2018-03-06', 'PAGO', 10, 80, 3, 4, 2);
-  
-  */
   
 --criação das views
 create or replace view view_geral as 
@@ -325,3 +288,4 @@ select uuid_short() as id,
  order by v.usuario_id, v.produto_id;
 
 
+*/
