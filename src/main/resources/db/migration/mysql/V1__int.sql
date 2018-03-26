@@ -1,7 +1,3 @@
---start do banco
-create database if not exists db;
-use db;
-
 --criação das tabelas
 create table usuario (
   id bigint(20) not null auto_increment,
