@@ -64,7 +64,7 @@ public class Produto implements Serializable {
 		this.caminhoFoto = caminhoFoto;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Usuario getUsuario() {
 		return usuario;
 	}

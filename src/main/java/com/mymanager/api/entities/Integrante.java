@@ -151,7 +151,7 @@ public class Integrante implements Serializable {
 		Complemento = complemento;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Usuario getUsuario() {
 		return usuario;
 	}

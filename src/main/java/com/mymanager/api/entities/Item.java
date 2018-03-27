@@ -62,7 +62,7 @@ public class Item implements Serializable {
 		this.cabecalho = cabecalho;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	public Produto getProduto() {
 		return produto;
 	}
@@ -109,7 +109,7 @@ public class Item implements Serializable {
 		this.situacao = situacao;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Usuario getUsuario() {
 		return usuario;
 	}

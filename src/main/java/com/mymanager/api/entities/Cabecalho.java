@@ -52,7 +52,7 @@ public class Cabecalho implements Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Integrante getIntegrante() {
 		return integrante;
 	}
@@ -71,7 +71,7 @@ public class Cabecalho implements Serializable {
 		this.tipo = tipo;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -107,7 +107,7 @@ public class Cabecalho implements Serializable {
 	@Override
 	public String toString() {
 		return "Cabecalho [id=" + id + ", integrante=" + integrante + ", tipo=" + tipo + ", usuario=" + usuario
-				+ ", dataCriacao=" + dataCriacao + ", itens=" + itens + "]";
+				+ ", dataCriacao=" + dataCriacao +  "]";
 	}
 
 }

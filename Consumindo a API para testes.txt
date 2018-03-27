@@ -1,12 +1,12 @@
 Passo a para teste:
-configuração padrão: 
+configuraï¿½ï¿½o padrï¿½o: 
   - content-type: application/json;
 
---cria um usuário novo:
+--cria um usuï¿½rio novo:
 POST: http://localhost:8080/api/usuario/cadastrar
 {
-  "nome": "yuri oliveira de paula",
-  "email": "yuridpaula@live.com",
+  "nome": "",
+  "email": "",
   "senha": "123456"
 }
 
