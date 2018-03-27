@@ -11,8 +11,7 @@ import com.mymanager.api.entities.ItensPendentes;
 public interface ItensPendentesService {
 	/**
 	 * Retorna uma lista de ItensPendentes
-	 * @Param usuarioID
 	 * @return List<ItensPendentes>
 	 */
-	List<ItensPendentes> buscarPorusuarioID(Long usuarioID);
+	List<ItensPendentes> buscarPorUsuarioID();
 }

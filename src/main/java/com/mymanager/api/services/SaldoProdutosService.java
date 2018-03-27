@@ -12,16 +12,14 @@ public interface SaldoProdutosService {
 	
 	/**
 	 * Retorna uma lista de saldos
-	 * @param usuarioID
 	 * @return List<SaldoProdutos>
 	 */
-	List<SaldoProdutos> buscarPorUsuarioID(Long usuarioID);
+	List<SaldoProdutos> buscarPorUsuarioID();
 	
 	/**
 	 * retonar um saldo
-	 * @param usuarioID
 	 * @param produtoID
 	 * @return Optional<SaldoProdutos>
 	 */
-	Optional<SaldoProdutos> buscarPorUsuarioIDEProdutoID(Long usuarioID, Long produtoID);
+	Optional<SaldoProdutos> buscarPorUsuarioIDEProdutoID(Long produtoID);
 }

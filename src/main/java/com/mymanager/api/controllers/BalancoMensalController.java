@@ -32,7 +32,7 @@ import com.mymanager.api.services.BalancoMensalService;
 @RequestMapping("/api/balanco-mensal")
 @CrossOrigin(origins = "*")
 public class BalancoMensalController {
-	private static final Logger log = LoggerFactory.getLogger(CabecalhoController.class);
+	private static final Logger log = LoggerFactory.getLogger(BalancoMensalController.class);
 
 	@Autowired
 	private BalancoMensalService balancoMensalService;

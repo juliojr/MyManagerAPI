@@ -11,10 +11,9 @@ import com.mymanager.api.entities.MaisIntegrantes;
 public interface MaisIntegrantesService {
 	/**
 	 * retorna uma lista de integrantes
-	 * @param usuarioID
 	 * @param mes
 	 * @param ano
 	 * @return List<MaisIntegrantes>
 	 */
-	List<MaisIntegrantes> buscarPorUsuarioIDEMesEAno(Long usuarioID, Integer mes,Integer ano);	
+	List<MaisIntegrantes> buscarPorMesEAno(Integer mes,Integer ano);	
 }

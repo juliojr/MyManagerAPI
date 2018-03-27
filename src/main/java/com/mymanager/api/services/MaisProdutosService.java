@@ -11,10 +11,9 @@ import com.mymanager.api.entities.MaisProdutos;
 public interface MaisProdutosService {
 	/**
 	 * retorna uma lista de produtos
-	 * @param usuarioID
 	 * @param mes
 	 * @param ano
 	 * @return List<MaisProdutos>
 	 */
-	List<MaisProdutos> buscarPorUsuarioIDEMesEAno(Long usuarioID, Integer mes,Integer ano);
+	List<MaisProdutos> buscarPorMesEAno(Integer mes,Integer ano);
 }
