@@ -11,7 +11,6 @@ import com.mymanager.api.entities.FechamentoDia;
 public interface FechamentoDiaService {
 	/**
 	 * retorna uma lista de fechamentos dia
-	 * @param usuarioID
 	 * @param mes
 	 * @param ano
 	 * @return List<FfechamentoDia>

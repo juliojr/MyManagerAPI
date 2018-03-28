@@ -19,7 +19,7 @@ public interface UsuarioService {
 	/**
 	 * Cadastra um novo usuário
 	 * @param usuario
-	 * @return
+	 * @return Usuario
 	 */
 	Usuario persistir(Usuario usuario);
 	

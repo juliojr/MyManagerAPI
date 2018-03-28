@@ -17,7 +17,7 @@ import com.mymanager.api.response.Response;
 import com.mymanager.api.services.FechamentoDiaService;
 
 /**
- * Controller para interação da entidade FechamentoDia
+ * Controller para interação da entity FechamentoDia
  * 
  * @RestControler -> marca a classe como endPpoint
  * @RequestMapping -> marca o mapeamento padrão do controller
@@ -44,6 +44,8 @@ public class FechamentoDiaController {
 	/**
 	 * retorna uma lista de FechamentoDia
 	 * 
+	 * @param ano
+	 * @param mes
 	 * @return ResponseEntity<Response<List<FechamentoDia>>>
 	 */
 	@GetMapping(value = "/{ano}/{mes}")
@@ -56,7 +58,8 @@ public class FechamentoDiaController {
 
 		List<FechamentoDia> lista = new ArrayList<FechamentoDia>();
 
-		this.fechamentoDiaService.buscarPorMesEAno(mes, ano).stream()
+		this.fechamentoDiaService.buscarPorMesEAno(mes, ano)
+			.stream()
 				.sorted((b1, b2) -> b1.getDia().compareTo(b2.getDia()))
 				.forEach(fechamentoDia -> lista.add(fechamentoDia));
 

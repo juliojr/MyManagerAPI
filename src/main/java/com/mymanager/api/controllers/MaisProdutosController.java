@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,9 @@ import com.mymanager.api.services.MaisProdutosService;
 @CrossOrigin(origins = "*")
 public class MaisProdutosController {
 	private static final Logger log = LoggerFactory.getLogger(MaisProdutosController.class);
+	
+	@Value("${retornos.limit}")
+	private int limit;
 
 	@Autowired
 	private MaisProdutosService maisProdutosService;
@@ -71,8 +75,12 @@ public class MaisProdutosController {
 		List<MaisProdutos> lista = new ArrayList<MaisProdutos>();
 
 		this.maisProdutosService.buscarPorMesEAno(mes, ano).stream()
-				.sorted((p1, p2) -> p1.getMes().compareTo(p2.getMes()))
-				.forEach(maisProdutos -> lista.add(maisProdutos));
+				.sorted((p1, p2) -> p2.getValorTotal().compareTo(p1.getValorTotal()))
+				.forEach(maisProdutos -> { 
+					if(lista.size() < limit) { 
+						lista.add(maisProdutos);
+					}
+				});
 
 		response.setData(lista);
 		return ResponseEntity.ok(response);

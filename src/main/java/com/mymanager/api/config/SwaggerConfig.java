@@ -20,9 +20,13 @@ import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * classe de configuração da documentação dos EndPoints.
- * Padrão do Swagger
+ * classe de configuração da documentação dos EndPoints. Padrão do Swagger
+ * 
  * @see https://swagger.io/
+ * @Configuration -> aponta uma classe de configuração
+ * @Profile -> aponta o profile habilitado. deixei prod para poder acessar
+ *          direto da API no heroku
+ * @EnableSwagger2 -> habilita o swagger 2
  * @author Yuri Oliveira
  *
  */
@@ -40,17 +44,21 @@ public class SwaggerConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.mymanager.api.controllers"))
-				.paths(PathSelectors.any()).build()
-				.apiInfo(apiInfo());
+				.apis(RequestHandlerSelectors.basePackage("com.mymanager.api.controllers")).paths(PathSelectors.any())
+				.build().apiInfo(apiInfo());
 	}
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("My Manager API")
-				.description("Documentação da API de acesso aos endpoints do My Manager.").version("1.0")
-				.build();
+				.description("Documentação da API de acesso aos endpoints do My Manager.").version("1.0").build();
 	}
 
+	/**
+	 * Faz a autenticação direta pelo JWT fixa com o email informado, apenas para
+	 * testes da API.
+	 * 
+	 * @return SecurityConfiguration
+	 */
 	@Bean
 	public SecurityConfiguration security() {
 		String token;

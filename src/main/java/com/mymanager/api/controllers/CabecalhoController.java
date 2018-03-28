@@ -32,7 +32,7 @@ import com.mymanager.api.services.CabecalhoService;
 import com.mymanager.api.services.IntegranteService;
 
 /**
- * Controller para interação da entidade Cabecalho
+ * Controller para interação da entity Cabecalho
  * 
  * @RestControler -> marca a classe como endPpoint
  * @RequestMapping -> marca o mapeamento padrão do controller
@@ -108,10 +108,9 @@ public class CabecalhoController {
 
 		List<CabecalhoDto> cabecalhosDto = new ArrayList<CabecalhoDto>();
 
-		cabecalhos
-			.stream().sorted((c1, c2) -> c1.getId().compareTo(c2.getId()))
+		cabecalhos.stream().sorted((c1, c2) -> c1.getId().compareTo(c2.getId()))
 				.forEach(cabecalho -> cabecalhosDto.add(this.converterCabecalhoParaDto(cabecalho)));
-		
+
 		response.setData(cabecalhosDto);
 		return ResponseEntity.ok(response);
 	}
@@ -190,7 +189,7 @@ public class CabecalhoController {
 	 * @param id
 	 * @param cabecalhoDto
 	 * @param result
-	 * @return
+	 * @return ResponseEntity<Response<String>>
 	 */
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Response<String>> remover(

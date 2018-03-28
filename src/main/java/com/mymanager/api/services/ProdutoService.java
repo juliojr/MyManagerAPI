@@ -20,13 +20,12 @@ public interface ProdutoService {
 	/**
 	 * Cadastra um novo produto
 	 * @param produto
-	 * @return
+	 * @return Produto
 	 */
 	Produto persistir(Produto produto);
 	
 	/**
 	 * Retorna uma lista de produtos
-	 * @param usuario
 	 * @return Optional<Produto>
 	 */
 	List<Produto> buscarPorUsuario();

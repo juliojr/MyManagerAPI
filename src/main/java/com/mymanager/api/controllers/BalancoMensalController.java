@@ -21,7 +21,7 @@ import com.mymanager.api.response.Response;
 import com.mymanager.api.services.BalancoMensalService;
 
 /**
- * Controller para interação da entidade BalancoMensal
+ * Controller para interação da entity BalancoMensal
  * 
  * @RestControler -> marca a classe como endPpoint
  * @RequestMapping -> marca o mapeamento padrão do controller
@@ -50,12 +50,14 @@ public class BalancoMensalController {
 	 * 
 	 * @param ano
 	 * @param mes
-	 * @return
+	 * @param situacao
+	 * @return ResponseEntity<Response<BalancoMensal>>
 	 */
 	@GetMapping(value = "/{ano}/{mes}/{situacao}")
 	public ResponseEntity<Response<BalancoMensal>> buscarPorAnoEMes(
 			// pega variáveis da URL
-			@PathVariable("ano") Integer ano, @PathVariable("mes") Integer mes, @PathVariable("situacao") String situacao) {
+			@PathVariable("ano") Integer ano, @PathVariable("mes") Integer mes,
+			@PathVariable("situacao") String situacao) {
 
 		log.info("Buscando BalancoMensal pelo ano {} e mes {} e situacao {}", ano, mes, situacao);
 		Response<BalancoMensal> response = new Response<BalancoMensal>();
@@ -71,28 +73,36 @@ public class BalancoMensalController {
 			response.getErrors().add("Mês não informado.");
 			return ResponseEntity.badRequest().body(response);
 		}
-		
-		if ( ! EnumUtils.isValidEnum(SituacaoEnum.class, situacao)) {
+
+		if (!EnumUtils.isValidEnum(SituacaoEnum.class, situacao)) {
 			log.info("Situação inválida.");
 			response.getErrors().add("Situacao Inválida");
 			return ResponseEntity.badRequest().body(response);
 		}
-		
-		Optional<BalancoMensal> balancoMensal = this.balancoMensalService.buscarPorMesEAnoESituacao(mes, ano, SituacaoEnum.valueOf(situacao));
+
+		Optional<BalancoMensal> balancoMensal = this.balancoMensalService.buscarPorMesEAnoESituacao(mes, ano,
+				SituacaoEnum.valueOf(situacao));
 
 		if (!balancoMensal.isPresent()) {
 			log.info("Balanco Não encontrado!");
 			response.getErrors().add("Balanço não encontrado.");
 			return ResponseEntity.badRequest().body(response);
 		}
-				
+
 		response.setData(balancoMensal.get());
 		return ResponseEntity.ok(response);
 	}
 
+	/**
+	 * retorna uma lista de BalancoMensal
+	 * 
+	 * @param ano
+	 * @param situacao
+	 * @return ResponseEntity<Response<List<BalancoMensal>>>
+	 */
 	@GetMapping(value = "/{ano}/{situacao}")
 	public ResponseEntity<Response<List<BalancoMensal>>> buscarPorAno(
-			// pega a variavel da url
+			// pega as variaveis da url
 			@PathVariable("ano") Integer ano, @PathVariable("situacao") String situacao) {
 
 		log.info("Buscando Balancos pelo ano {}", ano);
@@ -103,11 +113,12 @@ public class BalancoMensalController {
 			response.getErrors().add("Ano não informado.");
 			return ResponseEntity.badRequest().body(response);
 		}
-		
+
 		List<BalancoMensal> lista = new ArrayList<BalancoMensal>();
-		
+
 		this.balancoMensalService.buscarPorAnoESituacao(ano, SituacaoEnum.valueOf(situacao))
-			.stream().sorted((p1, p2) -> p1.getMes().compareTo(p2.getMes()))
+			.stream()
+				.sorted((p1, p2) -> p1.getMes().compareTo(p2.getMes()))
 				.forEach(balancoMensal -> lista.add(balancoMensal));
 
 		response.setData(lista);

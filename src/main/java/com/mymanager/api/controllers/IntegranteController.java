@@ -30,7 +30,7 @@ import com.mymanager.api.response.Response;
 import com.mymanager.api.services.IntegranteService;
 
 /**
- * Controller para interação da entidade Integrante
+ * Controller para interação da entity Integrante
  * 
  * @RestControler -> marca a classe como endPpoint
  * @RequestMapping -> marca o mapeamento padrão do controller
@@ -94,7 +94,7 @@ public class IntegranteController {
 	public ResponseEntity<Response<List<IntegranteDto>>> buscarPorUsuario() {
 		Response<List<IntegranteDto>> response = new Response<List<IntegranteDto>>();
 
-		List<Integrante> integrantes = integranteService.buscarPorUsuario();
+		List<Integrante> integrantes = this.integranteService.buscarPorUsuario();
 
 		if (integrantes.isEmpty()) {
 			log.info("Nenhum integrante encontrado.");
@@ -105,7 +105,8 @@ public class IntegranteController {
 		List<IntegranteDto> integrantesDto = new ArrayList<IntegranteDto>();
 		
 		integrantes
-			.stream().sorted((i1, i2) -> i1.getId().compareTo(i2.getId()))
+			.stream()
+				.sorted((i1, i2) -> i1.getId().compareTo(i2.getId()))
 				.forEach(integrante -> integrantesDto.add(this.converterIntegranteParaDto(integrante)));
 
 		response.setData(integrantesDto);

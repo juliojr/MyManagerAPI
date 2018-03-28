@@ -26,7 +26,6 @@ public interface IntegranteService {
 	
 	/**
 	 * Retorna uma lista de integrantes
-	 * @param usuario
 	 * @return Optional<Integrante>
 	 */
 	List<Integrante> buscarPorUsuario();

@@ -36,14 +36,12 @@ public interface CabecalhoService {
 	/**
 	 * Retorna uma lista de cabecalhos
 	 * @param tipo
-	 * @param usuario
 	 * @return List<Cabecalho>
 	 */
 	List<Cabecalho> buscarPorTipo(TipoEnum tipo);
 	
 	/**
 	 * Retorna uma lista de usuários
-	 * @param usuario
 	 * @return List<Cabecalho>
 	 */
 	List<Cabecalho> buscarPorUsuario();

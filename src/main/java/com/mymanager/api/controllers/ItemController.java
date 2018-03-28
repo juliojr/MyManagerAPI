@@ -130,8 +130,7 @@ public class ItemController {
 
 		List<ItemDto> itensDto = new ArrayList<ItemDto>();
 
-		items
-			.stream().sorted((i1, i2) -> i1.getDataPagamento().compareTo(i2.getDataPagamento()))
+		items.stream().sorted((i1, i2) -> i1.getDataPagamento().compareTo(i2.getDataPagamento()))
 				.forEach(item -> itensDto.add(this.converterItemParaDto(item)));
 
 		response.setData(itensDto);
@@ -194,8 +193,8 @@ public class ItemController {
 		}
 
 		this.atualizarDadosItem(item.get(), itemDto, result);
-		
-		if(result.hasErrors()) {
+
+		if (result.hasErrors()) {
 			log.error("Erro validando Item: {}", result.getAllErrors());
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
